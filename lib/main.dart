@@ -7,6 +7,11 @@ final kColorScheme = ColorScheme.fromSeed(
   seedColor: Colors.green,
 );
 
+final kDarkColorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: const Color.fromARGB(255, 5, 99, 125),
+);
+
 void main() {
   runApp(const ExpenseAppMaterial());
 }
@@ -16,6 +21,22 @@ class ExpenseAppMaterial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: kDarkColorScheme,
+        cardTheme: const CardTheme().copyWith(
+          color: kDarkColorScheme.secondaryContainer,
+          margin: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 8,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kDarkColorScheme.primaryContainer,
+            foregroundColor: kDarkColorScheme.onPrimaryContainer,
+          ),
+        ),
+      ),
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
@@ -37,12 +58,13 @@ class ExpenseAppMaterial extends StatelessWidget {
         ),
         textTheme: ThemeData().textTheme.copyWith(
               titleLarge: TextStyle(
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w500,
                 color: kColorScheme.onSecondaryContainer,
-                fontSize: 20,
+                fontSize: 17,
               ),
             ),
       ),
+      themeMode: ThemeMode.system,
       home: const ExpenseApp(),
     );
   }
