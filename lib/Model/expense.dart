@@ -11,7 +11,11 @@ class Expense {
   final double amount;
   final Category category;
   final DateTime date;
-  Expense({required this.title, required this.amount, required this.category, required this.date})
+  Expense(
+      {required this.title,
+      required this.amount,
+      required this.category,
+      required this.date})
       : id = uuid.v4();
 
   IconData get icon => categoryIcons[category] ?? Icons.disabled_by_default;
@@ -40,6 +44,12 @@ class ExpenseBucket {
     required this.category,
     required this.expenses,
   });
+  ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
+      : expenses = allExpenses.where(
+          (expense) {
+            return expense.category == category;
+          },
+        ).toList();
   final Category category;
   final List<Expense> expenses;
 
