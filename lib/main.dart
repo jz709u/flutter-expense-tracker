@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:expense_tracking_app/Components/Charts/chart.dart';
 import 'package:expense_tracking_app/Screens/new_expense_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracking_app/Model/expense.dart';
@@ -159,6 +162,9 @@ class _ExpenseAppState extends State<ExpenseApp> {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
+        Chart(
+          expenses: expenses,
+        ),
         Expanded(
           child: mainContent,
         )
